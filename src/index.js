@@ -14,12 +14,19 @@ function paragraphBreak(str) {
     
 }
 
+function specialCharacters(word) {
+    return word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+}
+
 function duplicatedWordsVerification(str) {
     const wordsList = str.split(' ');
     const result = {}
     
     wordsList.forEach(word => {
-        result[word] = (result[word] || 0) + 1
+        if (word.length >= 3) {
+            const freeWord = specialCharacters(word)
+            result[freeWord] = (result[freeWord] || 0) + 1
+        }
     })
     return result;
 }
