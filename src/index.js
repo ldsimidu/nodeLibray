@@ -6,10 +6,13 @@ const link = path[2];
 fs.readFile(link, 'utf-8', (err, str) => paragraphBreak(str))
 
 function paragraphBreak(str) {
-    const paragraphList = str.toLowerCase().split('\n')
-    const count = paragraphList.map((paragraph) => {
+    const paragraph = str.toLowerCase().split('\n')
+    const count = paragraph.flatMap((paragraph) => {
+        if (!paragraph) return [] ;
         return duplicatedWordsVerification(paragraph)
     })
+    //.filter((paragraph) => paragraph)
+    //.map((paragraph) => {        
     console.log(count);
     
 }
