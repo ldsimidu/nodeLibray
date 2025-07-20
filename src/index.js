@@ -1,4 +1,5 @@
 const fs = require('fs'); //file system
+const errorHandling = require('./errors/errorFunctions')
 
 const path = process.argv;
 const link = path[2];
@@ -8,8 +9,7 @@ fs.readFile(link, 'utf-8', (err, str) => {
         if (err) throw err
         paragraphBreak(str)
     } catch(err) {        
-        if (err.code == 'ENOENT') console.log("ERROR: verify your file path");
-        else console.log(`UNEXPECTED ERROR:  ${err}`);      
+        errorHandling(err) 
     }
 })
 
