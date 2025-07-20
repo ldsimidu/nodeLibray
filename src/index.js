@@ -3,7 +3,15 @@ const fs = require('fs'); //file system
 const path = process.argv;
 const link = path[2];
 
-fs.readFile(link, 'utf-8', (err, str) => paragraphBreak(str))
+fs.readFile(link, 'utf-8', (err, str) => {
+    try {
+        if (err) throw err
+        paragraphBreak(str)
+    } catch(err) {        
+        if (err.code == 'ENOENT') console.log("ERROR: verify your file path");
+        else console.log(`UNEXPECTED ERROR:  ${err}`);      
+    }
+})
 
 function paragraphBreak(str) {
     const paragraph = str.toLowerCase().split('\n')
