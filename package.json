@@ -1,0 +1,13 @@
+{
+  "name": "nodelibrary",
+  "version": "1.0.0",
+  "description": "This small Node.js script allows you to read and display the contents of a text file passed as an argument in the terminal.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
