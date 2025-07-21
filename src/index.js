@@ -1,19 +1,4 @@
-const fs = require('fs'); //file system
-const errorHandling = require('./errors/errorFunctions')
-
-const path = process.argv;
-const link = path[2];
-
-fs.readFile(link, 'utf-8', (err, str) => {
-    try {
-        if (err) throw err
-        paragraphBreak(str)
-    } catch(err) {        
-        errorHandling(err) 
-    }
-})
-
-function paragraphBreak(str) {
+export function paragraphBreak(str) {
     const paragraph = str.toLowerCase().split('\n')
     const count = paragraph.flatMap((paragraph) => {
         if (!paragraph) return [] ;
