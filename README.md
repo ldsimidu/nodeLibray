@@ -1,41 +1,53 @@
-# Leitor de Arquivo via Linha de Comando
+# **File Reader via Command Line**
 
-Este pequeno script em Node.js permite ler e exibir no terminal o conteúdo de um arquivo de texto passado como argumento.
+This small Node.js script allows you to read and display the contents of a text file passed as an argument in the terminal.
 
+<br>
 
-## Leitor de arquivos em JS:
+## **How to execute**
+Considering the 'txt' files in this project:
+
+```bash
+node src/index.js ../files/text.txt
+```
+
+<br>
+
+## **Package JSON**
+
+The package.json file is used to manage a Node.js project's dependencies, scripts, and configurations. It describes the project, including its name, version, author, and the libraries it uses.
+
+```bash
+$ npm init -y
+```
+
+<br>
+
+## **File Reader in JS**
 
 ```javascript
-const fs = require('fs'); // Importa o módulo 'fs' para manipulação de arquivos (File System)
+const fs = require('fs'); // Imports the 'fs' module for file system manipulation
 ```
 
 👉 Responsável por permitir que o Node.js leia arquivos locais.
 
 ```javascript
-const path = process.argv; // Captura todos os argumentos da linha de comando
-const link = path[2]; // Pega o terceiro argumento, que deve ser o caminho do arquivo
+const path = process.argv; // Captures all command-line arguments
+const link = path[2]; // Gets the third argument, which should be the file path
 ```
 
-O Node.js armazena os argumentos passados na variável process.argv em forma de array.
-- path[0] → caminho do Node
-- path[1] → caminho do arquivo .js
-- path[2] → argumento passado pelo usuário (neste caso, o caminho do arquivo que queremos ler).
+Node.js stores the passed arguments in the process.argv variable as an array.
+- path[0] → path to Node
+- path[1] → path to the .js file
+- path[2] → argument passed by the user (in this case, the path to the file we want to read).
 
 ```javascript
-fs.readFile(link, 'utf-8', (erro, texto) => console.log(texto));
-```
-
----
-
-Tendo em vista os arquivos 'txt' deste projeto:
-
-```bash
-node leitor.js ../arquivo/exemplo.txt
-```
-
-Resultado esperado:
-
-```bash
-exemplo.txt
-[conteúdo do arquivo exemplo.txt exibido aqui]
+fs.readFile(link, 'utf-8', (err, str) => { // Reads the file at the given path using UTF-8 encoding
+    try {
+        if (err) throw err // If an error occurred during reading, throw it to be caught below
+        paragraphBreak(str) // Calls the paragraphBreak function, passing the file's contents as argument
+    } catch(err) {        
+        errorHandling(err) // If an error was thrown, handle it using the errorHandling function
+    }
+})
 ```
