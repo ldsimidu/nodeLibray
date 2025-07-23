@@ -2,6 +2,7 @@
 import fs from 'fs'
 import errorHandling from './errors/errorFunctions.js'
 import { paragraphBreak } from './index.js';
+import { outFile } from '../helpers.js';
 
 const filePath = process.argv;
 const link = filePath[2];
@@ -19,7 +20,7 @@ fs.readFile(link, 'utf-8', (err, str) => {
 
 async function saveFile(wordList, path) {
     const newFile = `${path}/result.txt`
-    const textWords = JSON.stringify(wordList)
+    const textWords = outFile(wordList);
     try {
         await fs.promises.writeFile(newFile, textWords)
         console.log(`File has been created!`);
