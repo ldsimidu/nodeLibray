@@ -3,14 +3,27 @@ import fs from 'fs'
 import errorHandling from './errors/errorFunctions.js'
 import { paragraphBreak } from './index.js';
 
-const path = process.argv;
-const link = path[2];
+const filePath = process.argv;
+const link = filePath[2];
+const newFilePath = filePath[3]
 
 fs.readFile(link, 'utf-8', (err, str) => {
     try {
         if (err) throw err
-        paragraphBreak(str)
+        const result = paragraphBreak(str)
+        saveFile(result, newFilePath)
     } catch(err) {        
         errorHandling(err) 
     }
 })
+
+async function saveFile(wordList, path) {
+    const newFile = `${path}/result.txt`
+    const textWords = JSON.stringify(wordList)
+    try {
+        await fs.promises.writeFile(newFile, textWords)
+        console.log(`File has been created!`);
+    } catch(err) {
+        errorHandling(err)
+    }
+}

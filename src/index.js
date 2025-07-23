@@ -6,7 +6,7 @@ export function paragraphBreak(str) {
     })
     //.filter((paragraph) => paragraph)
     //.map((paragraph) => {        
-    console.log(count);
+    return count;
     
 }
 
